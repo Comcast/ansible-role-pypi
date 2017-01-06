@@ -1,0 +1,18 @@
+---
+# defaults file for ansible-pypi
+pypi_server_version: '1.2.0'
+pypi_user: 'pypi'
+pypi_group: 'pypi'
+pypi_server_port: '7974'
+pypi_home_dir: '/srv/pypi'
+pypi_work_dir: '{{ pypi_home_dir }}'
+pypi_packages_directory: '{{ pypi_work_dir }}/packages'
+pypi_log_file: '{{ pypi_work_dir }}/pypi-server.log'
+pypi_init_script_dir: '/etc/init.d'
+pypi_server_pid_file: '{{ pypi_work_dir }}/pypi.pid'
+pypi_requirements_template: 'templates/pypi-server-requirements.txt.j2'
+
+htaccess_dir: '{{ pypi_home_dir }}'
+use_htaccess_file: true
+htaccess_username: ''
+htaccess_password: ''

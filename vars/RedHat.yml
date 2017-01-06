@@ -1,0 +1,5 @@
+---
+yum_packages:
+  - 'python'
+  - 'python-pip'
+  - 'libselinux-python'

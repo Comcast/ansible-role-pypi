@@ -1,0 +1,12 @@
+---
+# handlers file for ansible-pypi
+- name: 'Start pypi-server'
+  service:
+    name: 'pypi-server'
+    state: 'started'
+    enabled: yes
+
+- name: 'Stop pypi-server'
+  service:
+    name: 'pypi-server'
+    state: 'stopped'

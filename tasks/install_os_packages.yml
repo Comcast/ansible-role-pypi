@@ -1,0 +1,16 @@
+---
+- name: 'Include {{ ansible_os_family }}.yml'
+  include_vars: '{{ ansible_os_family }}.yml'
+
+- name: 'Install Epel repo'
+  yum:
+    name: 'epel-release'
+    state: 'present'
+  when: 'ansible_os_family == "RedHat"'
+
+- name: 'Install yum packages'
+  yum:
+    name: '{{ item }}'
+    state: 'present'
+  with_items: '{{ yum_packages }}'
+  when: 'ansible_os_family == "RedHat"'

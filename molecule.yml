@@ -1,0 +1,37 @@
+---
+molecule:
+  ignore_paths:
+    - .git
+    - .vagrant
+    - .molecule
+    - .venv
+
+driver:
+  name: vagrant
+
+vagrant:
+  raw_config_args:
+    - "ssh.insert_key = false"
+    - "vm.network 'forwarded_port', guest: 7974, host: 8080"
+
+  platforms:
+    - name: centos/7
+      box: centos/7
+      box_url: https://vagrantcloud.com/centos/boxes/7/versions/1610.01/providers/virtualbox.box
+
+  providers:
+    - name: virtualbox
+      type: virtualbox
+      options:
+        memory: 512
+        cpus: 2
+
+  instances:
+    - name: ansible-pypi
+      ansible_groups:
+        - group1
+
+verifier:
+  name: testinfra
+  options:
+    verbose: true

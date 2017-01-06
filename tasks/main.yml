@@ -1,0 +1,65 @@
+---
+# tasks file for ansible-pypi
+- name: '{{ pypi_group }}'
+  become: yes
+  group:
+    name: '{{ pypi_group }}'
+
+- name: 'Create user {{ pypi_user }}'
+  become: yes
+  user:
+    name: '{{ pypi_user }}'
+    group: '{{ pypi_group }}'
+    home: '{{ pypi_home_dir }}'
+    createhome: yes
+
+- name: 'Create {{ pypi_work_dir }} directory'
+  file:
+    path: '{{ pypi_work_dir }}'
+    state: 'directory'
+    owner: '{{ pypi_user }}'
+    group: '{{ pypi_group }}'
+    mode: '0755'
+
+- name: 'Create pypi packages directory {{ pypi_packages_directory }}'
+  file:
+    path: '{{ pypi_packages_directory }}'
+    state: 'directory'
+    owner: '{{ pypi_user }}'
+    group: '{{ pypi_group }}'
+    mode: '0755'
+
+- include: 'install_os_packages.yml'
+
+- name: 'Copy pypiserver requirements'
+  template:
+    src: '{{ pypi_requirements_template }}'
+    dest: '{{ pypi_work_dir }}/pypiserver-requirements.txt'
+    owner: '{{ pypi_user }}'
+    group: '{{ pypi_group }}'
+    mode: '0644'
+
+- name: 'Install pypi-server'
+  pip:
+    requirements: '{{ pypi_work_dir}}/pypiserver-requirements.txt'
+    state: 'present'
+
+- name: 'Generate htaccess file'
+  htpasswd:
+    path: '{{ htaccess_dir }}/.htaccess'
+    name: '{{ htaccess_username }}'
+    password: '{{ htaccess_password }}'
+    owner: '{{ pypi_user }}'
+    group: '{{ pypi_group }}'
+    mode: '0600'
+
+- name: 'Copy systemd script'
+  template:
+    src: 'pypi-server.service.j2'
+    dest: '/etc/systemd/system/pypi-server.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+  when: 'ansible_service_mgr == "systemd"'
+  notify:
+    - 'Start pypi-server'
