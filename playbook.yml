@@ -1,6 +1,4 @@
 ---
 - hosts: all
   roles:
-    - role: ansible-pypi
-      htaccess_username: 'test'
-      htaccess_password: 'test'
+    - role: ansible-role-pypi

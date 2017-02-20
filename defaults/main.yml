@@ -13,6 +13,6 @@ pypi_server_pid_file: '{{ pypi_work_dir }}/pypi.pid'
 pypi_requirements_template: 'templates/pypi-server-requirements.txt.j2'
 
 htaccess_dir: '{{ pypi_home_dir }}'
-use_htaccess_file: true
-htaccess_username: ''
-htaccess_password: ''
+enable_anonymous_auth: false
+htaccess_username: 'test'
+htaccess_password: 'test'
