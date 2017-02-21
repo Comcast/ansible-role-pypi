@@ -13,7 +13,7 @@ group = defaults['pypi_group']
 pypi_packages_dir = defaults['pypi_home_dir'] + '/packages'
 pypi_port = defaults['pypi_server_port']
 pypi_log_file = defaults['pypi_log_file']
-use_htaccess_file = defaults['use_htaccess_file']
+enable_anonymous_auth = defaults['enable_anonymous_auth']
 htaccess_dir = defaults['pypi_home_dir']
 
 
@@ -47,7 +47,7 @@ def test_pypi_service(Service):
 
 
 def test_htaccess_file(File):
-    if use_htaccess_file:
+    if not enable_anonymous_auth:
         htaccess = File(htaccess_dir + '/.htaccess')
         assert htaccess.exists
         assert htaccess.is_file

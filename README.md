@@ -26,13 +26,14 @@ Role Variables
   }}/pypi.pid`.'
 * `htaccess_dir`: 'The location of the generated `.htaccess` file. Default: `{{
   pypi_home_dir }}`.'
-* `use_htaccess_file`: 'A boolean value that determines whether to use
-  username/password authentication for uploads to the pypi-server. Default:
-  `true`.'
+* `enable_anonymous_auth`: 'A boolean value that determines whether to use
+  username/password authentication for uploads to the pypi-server. Note:
+  Enabling this is not recommended as it will allow anyone to upload artifacts
+  to pypi. Default: `false`.'
 * `htaccess_username`: 'Username to use when authenticating to the pypi-server
-  (only used when `use_htaccess_file is true`). Default: `none`.'
+  (only used when `enable_anonymous_auth is false`). Default: `test`.'
 * `htaccess_password`: 'Password to use when authenticating to the pypi-server
-  (only used when `use_htaccess_file is true`). Default: `none`.'
+  (only used when `enable_anonymous_auth is false`). Default: `test`.'
 * `python_packages`: 'A list of pypi-server dependency python packages installed
   via `pip`.'
                   Default:
@@ -55,7 +56,7 @@ passed in as parameters) is always nice for users too:
 ```yaml
     - hosts: servers
       roles:
-         - { role: comcast.pypi }
+         - role: comcast.pypi
 ```
 
 Testing
