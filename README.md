@@ -24,6 +24,8 @@ Role Variables
   script (sys-v only). Default: `/etc/init.d`.'
 * `pypi_server_pid_file`: 'The location of the . Default: `{{ pypi_work_dir
   }}/pypi.pid`.'
+* `pypi_requirements_template`: 'Template listing the required packages for
+  the pypi-server. Default: `templates/pypi-server-requirements.txt.j2`.'
 * `htaccess_dir`: 'The location of the generated `.htaccess` file. Default: `{{
   pypi_home_dir }}`.'
 * `enable_anonymous_auth`: 'A boolean value that determines whether to use
@@ -34,13 +36,6 @@ Role Variables
   (only used when `enable_anonymous_auth is false`). Default: `test`.'
 * `htaccess_password`: 'Password to use when authenticating to the pypi-server
   (only used when `enable_anonymous_auth is false`). Default: `test`.'
-* `python_packages`: 'A list of pypi-server dependency python packages installed
-  via `pip`.'
-                  Default:
-                      python_packages:
-                        - { package: 'pypiserver', version: "{{ pypi_server_version }}"}
-                        - { package: 'passlib', version: '1.6.5' }
-
 
 Dependencies
 ------------
