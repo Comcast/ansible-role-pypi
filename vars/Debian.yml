@@ -1,0 +1,5 @@
+---
+pypi_server_bin: /usr/local/bin/pypi-server
+apt_packages:
+  - 'python'
+  - 'python-pip'

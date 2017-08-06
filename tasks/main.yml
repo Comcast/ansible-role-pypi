@@ -29,7 +29,7 @@
     group: '{{ pypi_group }}'
     mode: '0755'
 
-- include: 'install_os_packages.yml'
+- include: 'install_{{ ansible_os_family }}_packages.yml'
 
 - name: 'Copy pypiserver requirements'
   template:

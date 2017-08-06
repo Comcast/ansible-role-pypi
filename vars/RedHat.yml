@@ -1,4 +1,5 @@
 ---
+pypi_server_bin: /usr/bin/pypi-server
 yum_packages:
   - 'python'
   - 'python-pip'

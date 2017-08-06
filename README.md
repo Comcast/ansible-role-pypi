@@ -83,6 +83,7 @@ Test against a specific platform:
 
 ```bash
 molecule test --platform centos/7
+molecule test --platform debian/jessie64
 ```
 
 Test uploads:
