@@ -19,6 +19,10 @@ vagrant:
       box: centos/7
       box_url: https://vagrantcloud.com/centos/boxes/7/versions/1610.01/providers/virtualbox.box
 
+    - name: debian/jessie64
+      box: debian/jessie64
+      box_url: https://app.vagrantup.com/debian/boxes/jessie64/versions/8.9.0/providers/virtualbox.box
+
   providers:
     - name: virtualbox
       type: virtualbox
