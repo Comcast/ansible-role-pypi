@@ -12,7 +12,7 @@ Group={{ pypi_group }}
 {% if enable_anonymous_auth %}
 ExecStart={{ pypi_server_bin }} -p {{ pypi_server_port }} -a . --log-file {{ pypi_log_file }} -P . {{ pypi_packages_directory }}
 {% else %}
-ExecStart={{ pypi_server_bin }} -p {{ pypi_server_port }} -a update --log-file {{ pypi_log_file }} -P {{ htaccess_dir }}/.htaccess {{ pypi_packages_directory }}
+ExecStart={{ pypi_server_bin }} -p {{ pypi_server_port }} -a {{ pypi_server_authenticate }} --log-file {{ pypi_log_file }} -P {{ htaccess_dir }}/.htaccess {{ pypi_packages_directory }}
 {% endif %}
 ExecStop=/bin/kill -TERM $MAINPID
 ExecReload=/bin/kill -HUP $MAINPID

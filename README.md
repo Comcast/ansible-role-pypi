@@ -26,6 +26,8 @@ Role Variables
   }}/pypi.pid`.'
 * `pypi_requirements_template`: 'Template listing the required packages for
   the pypi-server. Default: `templates/pypi-server-requirements.txt.j2`.'
+* `pypi_server_authenticate`: Comma-separated list of actions to authenticate
+  a client, ex.: `download,list,update`. Default: `update`.
 * `htaccess_dir`: 'The location of the generated `.htaccess` file. Default: `{{
   pypi_home_dir }}`.'
 * `enable_anonymous_auth`: 'A boolean value that determines whether to use
